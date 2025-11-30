@@ -8,6 +8,7 @@ __pycache__/
 venv/
 .env/
 fintech_env/
+ethopian_bank_reviews.csv
 
 # Data folders (raw + processed)
 data/raw/
