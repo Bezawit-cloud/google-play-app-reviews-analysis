@@ -46,17 +46,17 @@ GROUP BY b.bank_name;
 SELECT COUNT(*) FROM reviews;
 ## Folder Structure
 task3/
-├── schema.sql            # SQL file containing table creation statements
-├── insert_reviews.ipynb     # Python script to insert CSV data
-└── README.md             # Task 3 documentation
-Notes
+├── schema.sql # SQL file containing table creation statements
+├── insert_reviews.ipynb # Python script to insert CSV data
+└── README.md # Task 3 documentation
 
-PostgreSQL must be running locally (localhost:5432) with the database bank_reviews created.
+## Notes
+- PostgreSQL must be running locally (`localhost:5432`) with the database `bank_reviews` created.
+- Tables should be created before running the Python script.
+- This setup ensures that reviewers can replicate the database insertion and verification steps easily.
 
-Tables should be created before running the Python script.
-
-This setup ensures that reviewers can replicate the database insertion and verification steps easily.
 
   
+
 
 
