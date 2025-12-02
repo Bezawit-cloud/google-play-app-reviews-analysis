@@ -110,9 +110,7 @@ This README:
 - Summarizes **all tasks**  
 - Includes **setup instructions** for someone to replicate your work  
 
-If you want, I can also **draft a shorter, more “pull request-friendly” version** suitable for GitHub, keeping it under ~1 page while still covering all tasks.  
 
-Do you want me to do that?
 
 
 
