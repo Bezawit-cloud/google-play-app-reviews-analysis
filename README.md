@@ -1,154 +1,118 @@
-# Customer Experience Analytics for Fintech Apps — Task 1  
-### 10 Academy: Artificial Intelligence Mastery — Week 2 Challenge
+# Google Play Bank App Reviews Analysis
+
+**Author:** Bezawit Assefa  
+**Week:** 2  
+**Project:** Google Play Bank App Reviews Analysis  
+**Submission Date:** December 2, 2025  
 
 ---
 
-## 📌 Project Overview  
-This project analyzes customer satisfaction with mobile banking apps by scraping and preprocessing Google Play Store reviews for three major Ethiopian banks:
+## Project Overview
+This project analyzes user reviews from the Google Play Store for three Ethiopian banks’ mobile applications: **BOA, CBE, and Dashen**.  
+The goal is to:  
+- Clean and process review data  
+- Store data in a PostgreSQL database  
+- Perform sentiment and theme analysis  
+- Derive insights, visualize results, and recommend app improvements  
 
-- **Commercial Bank of Ethiopia (CBE)**
-- **Bank of Abyssinia (BOA)**
-- **Dashen Bank**
-
-Task 1 focuses on **data collection** and **preprocessing** to prepare a clean dataset for NLP analysis and visualization in later tasks.
+The project demonstrates a complete data engineering and analysis workflow using Python, PostgreSQL, and data visualization tools.
 
 ---
 
-## 🎯 Task 1 Objectives  
-
-- Scrape user reviews from the Google Play Store using `google-play-scraper`.
-- Collect **400+ reviews per bank** (1,200 total recommended).
-- Clean and preprocess the data:
-  - Remove duplicates  
-  - Handle missing values  
-  - Standardize date format  
-- Save the cleaned dataset as a CSV (kept locally, not uploaded to GitHub).
-- Maintain a clean GitHub repository with `.gitignore`, `requirements.txt`, and a clear folder structure.
-
-google-play-app-reviews-analysis/
-│
-├── data/ # (Hidden from GitHub using .gitignore)
-│ ├── raw/ # Raw scraped review CSVs
-│ └── processed/ # Cleaned final dataset
-│
-├── notebooks/
-│ └── scraping.ipynb # Jupyter notebook for scraping + preprocessing
-│
-├── src/
-│ └── scraping.py # (Optional) Python script version of scraping
-│
-├── .gitignore
-├── requirements.txt
-└── README.md
+## Folder Structure
+project-root/
+├── task1/ # Data collection & initial preprocessing
+├── task2/ # Sentiment analysis & theme extraction
+├── task3/ # PostgreSQL database setup and data insertion
+├── task4/ # Insights, visualizations, and final report
+└── README.md # Main project overview
 
 
 ---
 
-## 🛠 Tools & Libraries  
+## Task Summaries
 
-- Python 3.10+
-- `google-play-scraper`
-- `pandas`
-- `numpy`
-- Jupyter Notebook
-- Git & GitHub
+### **Task 1: Data Collection & Preprocessing**
+- Collected Google Play Store reviews for BOA, CBE, and Dashen apps
+- Cleaned and standardized review text
+- Stored data in CSV for further analysis
 
-Install dependencies:
+### **Task 2: Sentiment Analysis & Theme Extraction**
+- Performed sentiment scoring (positive/negative) using NLP
+- Extracted key themes (e.g., UI, Transactions, Customer Support)
+- Added columns for nouns, identified themes, sentiment labels, and scores
+- Stored processed CSV for Task 3 and 4
 
+### **Task 3: Store Cleaned Data in PostgreSQL**
+- Installed PostgreSQL and created a database `bank_reviews`
+- Defined schema with **Banks** and **Reviews** tables
+- Inserted cleaned CSV data using Python (`psycopg2`)
+- Verified data integrity via SQL queries
+- Documented schema for reproducibility
+
+### **Task 4: Insights and Recommendations**
+- Derived key insights, identifying **drivers (strengths)** and **pain points (weaknesses)** per bank
+- Compared banks to highlight strengths and weaknesses
+- Created visualizations: sentiment trends, rating distributions, keyword/theme charts
+- Provided practical recommendations for app improvements
+- Considered ethical aspects like review bias and sample size limitations
+
+---
+
+## Setup Instructions
+
+1. **Clone the repository:**
 ```bash
+git clone [your-repo-url]
+cd [project-folder]
+
+
+Install Python dependencies:
+
 pip install -r requirements.txt
 
-📘 Scraping Methodology
-✔ App IDs Used
-Bank	App ID
-CBE	com.combanketh.mobilebanking
-BOA	com.boa.boaMobileBanking
-Dashen	com.dashen.dashensuperapp
-✔ Scraping Function
-def scrape_reviews(app_id, bank_name, n_reviews=400):
-    reviews_list = []
 
-    while len(reviews_list) < n_reviews:
-        data, _ = reviews(
-            app_id,
-            lang="en",
-            country="et",
-            sort=Sort.NEWEST,
-            count=200,
-            filter_score_with=None
-        )
-        reviews_list.extend(data)
+PostgreSQL Setup (Task 3):
 
-    df = pd.DataFrame(data)[["content", "score", "at"]]
-    df.columns = ["review", "rating", "date"]
-    df["bank"] = bank_name
-    df["source"] = "Google Play"
+Ensure PostgreSQL is running locally (localhost:5432)
 
-    return df
+Database: bank_reviews
 
-🧹 Preprocessing Steps
+Create tables using schema.sql
 
-Converted review date → YYYY-MM-DD
+Insert CSV data using insert_reviews.ipynb
 
-Removed duplicate reviews
+Run notebooks:
 
-Removed rows with missing review text
+Task 2 & 4 notebooks for sentiment analysis and visualization
 
-Combined all banks into one dataframe
+Data Source
 
-Saved final cleaned CSV to:
+Google Play Store reviews scraped for BOA, CBE, and Dashen bank apps
 
-data/processed/ethiopian_banks_reviews.csv
+Notes
+
+Ensure that Task 3 database is populated before running Task 4 notebooks
+
+Visualizations and insights are derived from ~499 reviews inserted in Task 3
+
+References
+
+PostgreSQL Documentation
+
+Python libraries: Pandas, Matplotlib, Seaborn, Psycopg2
+
+Google Play Store review scraping tools
 
 
-(This folder is hidden in Git using .gitignore.)
+This README:  
+- Gives a **clear overview** of the project  
+- Summarizes **all tasks**  
+- Includes **setup instructions** for someone to replicate your work  
 
-📊 Output Summary
+If you want, I can also **draft a shorter, more “pull request-friendly” version** suitable for GitHub, keeping it under ~1 page while still covering all tasks.  
 
-Total Reviews Scraped: ~500+ after cleaning
-
-Final Columns:
-
-review
-
-rating
-
-date
-
-bank
-
-source
-
-Dataset is now prepared for sentiment analysis and theme extraction in Task 2.
-
-🔒 Why the Data Folder Is Hidden
-
-Large data files should not be pushed to GitHub.
-.gitignore contains:
-
-data/
-*.csv
+Do you want me to do that?
 
 
-This keeps the repository clean and professional.
-
-🌿 Git Branch Workflow
-
-Branches used:
-
-main → stable code
-
-task-1 → development branch for Task 1
-
-Example commit messages:
-
-"Add scraping function for CBE, BOA, Dashen"
-
-"Clean dataset and normalize dates"
-
-"Hide data folder using .gitignore"
-
-"Add Task 1 README"
-
-## 📂 Project Structure  
 
