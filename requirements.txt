@@ -1,6 +1,7 @@
 # Data handling
 pandas>=2.0.0
 numpy>=1.25.0
+pytest>=8
 
 # Visualization
 matplotlib>=3.8.0
