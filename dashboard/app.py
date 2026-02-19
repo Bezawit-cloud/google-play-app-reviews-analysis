@@ -1,13 +1,15 @@
 # dashboard/app.py
-# dashboard/app.py
 import streamlit as st
 import pandas as pd
 import os
 import matplotlib.pyplot as plt
 import seaborn as sns
 from wordcloud import WordCloud
-st.cache_data.clear()
 
+# ----------------------
+# Clear previous cache
+# ----------------------
+st.cache_data.clear()
 
 # ----------------------
 # Page Config
@@ -21,7 +23,7 @@ st.title("Ethiopian Bank Mobile App Reviews Dashboard")
 st.markdown(
     """
 This dashboard shows **user reviews and sentiment analysis** for BOA, CBE, and Dashen bank mobile apps.
-You can filter by bank and rating, view metrics, distribution charts, and a word cloud.
+Filter by bank and rating, view metrics, distribution charts, sentiment, and a word cloud.
 """
 )
 
@@ -71,6 +73,27 @@ col2.metric("Average Rating", round(filtered_df['rating'].mean(), 2))
 col3.metric("Median Rating", filtered_df['rating'].median())
 
 # ----------------------
+# Sentiment Metrics (if available)
+# ----------------------
+if 'sentiment_label' in filtered_df.columns:
+    sentiment_counts = filtered_df['sentiment_label'].value_counts()
+    col4, col5, col6 = st.columns(3)
+    col4.metric("Positive Reviews", sentiment_counts.get("POSITIVE", 0))
+    col5.metric("Neutral Reviews", sentiment_counts.get("NEUTRAL", 0))
+    col6.metric("Negative Reviews", sentiment_counts.get("NEGATIVE", 0))
+
+    st.subheader("Sentiment Distribution")
+    fig, ax = plt.subplots(figsize=(6,4))
+    sns.barplot(x=sentiment_counts.index, y=sentiment_counts.values, palette="viridis", ax=ax)
+    ax.set_ylabel("Number of Reviews")
+    st.pyplot(fig)
+    plt.clf()
+
+if 'sentiment_score' in filtered_df.columns:
+    avg_sentiment = round(filtered_df['sentiment_score'].mean(), 2)
+    st.info(f"Average Sentiment Score: {avg_sentiment}")
+
+# ----------------------
 # Rating Distribution Chart
 # ----------------------
 st.subheader("Rating Distribution per Bank")
@@ -94,14 +117,3 @@ if st.checkbox("Show Word Cloud"):
 # ----------------------
 if st.checkbox("Show Raw Data"):
     st.dataframe(filtered_df)
-
-# ----------------------
-# Optional: Sentiment Metrics (if sentiment column exists)
-# ----------------------
-if 'sentiment_label' in df.columns:
-    st.subheader("Sentiment Distribution")
-    sentiment_counts = filtered_df['sentiment_label'].value_counts()
-    fig, ax = plt.subplots(figsize=(6,4))
-    sns.barplot(x=sentiment_counts.index, y=sentiment_counts.values, palette="viridis", ax=ax)
-    ax.set_ylabel("Number of Reviews")
-    st.pyplot(fig)
