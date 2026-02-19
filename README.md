@@ -73,7 +73,7 @@ project-root/
 
 The dashboard allows users to explore metrics, sentiment, and themes interactively.
 
-### link[http://localhost:8501/]
+### link[]https://app-play-app-reviews-analysis-cypek9vtvkpjw9gu8juxu3.streamlit.app/
 
 ##  Technical Details
 
@@ -106,6 +106,7 @@ The dashboard allows users to explore metrics, sentiment, and themes interactive
 Bezawit Assefa
 
 Linkedin[https://www.linkedin.com/in/bezawit-assefa-4964592aa/]
+
 
 
 
