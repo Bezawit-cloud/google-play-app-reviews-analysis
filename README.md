@@ -5,126 +5,107 @@
 **Project:** Google Play Bank App Reviews Analysis  
 **Submission Date:** February 17, 2026  
 
-![Python CI](https://github.com/Bezawit-cloud/google-play-app-reviews-analysis/actions/workflows/python-app.yml/badge.svg)  
+![Python CI](https://github.com/Bezawit-cloud/google-play-app-reviews-analysis/actions/workflows/python-app.yml/badge.svg)
 
 ---
 
-## Project Overview
-This project analyzes user reviews from the Google Play Store for three Ethiopian banks’ mobile applications: **BOA, CBE, and Dashen**.  
-
-The goal is to:  
-- Clean and process review data  
-- Perform sentiment and theme analysis  
-- Derive insights, visualize results, and recommend app improvements  
-
-**Week 12 Improvements:**  
-- Modularized code in `src/` for better organization  
-- Added automated **pytest tests** for preprocessing, sentiment, and theme analysis  
-- Set up **CI/CD workflow** so tests run automatically on every push  
-- Built an **interactive Streamlit dashboard** for exploring reviews, ratings, and sentiment  
-- Ensures **reliability and professionalism** — perfect for finance-sector portfolios  
+## Project Title
+Google Play Bank App Reviews Analysis: An interactive dashboard and analytics system for BOA, CBE, and Dashen bank mobile app reviews.
 
 ---
 
-## Folder Structure
-```
-project-root/
-├── src/ # Modular Python code (preprocessing, sentiment, theme analysis)
-├── tests/ # Automated pytest tests
-├── notebooks/ # Jupyter notebooks for analysis and visualizations
-├── data/ # Cleaned CSV datasets (full dataset)
-├── dashboard/ # Streamlit dashboard code
-├── screenshots/ # Dashboard and analysis screenshots
-├── .github/
-│ └── workflows/ # CI/CD workflow for automated testing
-└── README.md # Project overview and setup instructions
-```
-
+## Business Problem
+Banking apps in Ethiopia are critical for customer engagement and digital transactions. However, user experience issues—such as slow transactions, confusing UI, or poor support—can lead to customer dissatisfaction and churn. This project analyzes real Google Play Store reviews to identify **strengths, weaknesses, and key pain points** in BOA, CBE, and Dashen mobile apps.
 
 ---
 
-## Task Summaries
-
-### **Task 1: Data Collection & Preprocessing**
-- Collected Google Play Store reviews for BOA, CBE, and Dashen apps  
-- Cleaned and standardized review text  
-- Stored data in CSV for further analysis  
-
-### **Task 2: Sentiment Analysis & Theme Extraction**
-- Performed sentiment scoring (positive/negative/neutral) using NLP  
-- Extracted key themes (UI, Transactions, Customer Support, etc.)  
-- Added columns for nouns, identified themes, sentiment labels, and scores  
-- Automated tests ensure correctness and reliability  
-
-### **Task 3: Store Cleaned Data in PostgreSQL**
-- Created a database `bank_reviews` with **Banks** and **Reviews** tables  
-- Inserted cleaned CSV data using Python (`psycopg2`)  
-
-### **Task 4: Insights, Visualizations & Dashboard**
-- Derived key insights per bank (strengths and pain points)  
-- Built visualizations: sentiment trends, rating distributions, word cloud  
-- Developed an interactive **Streamlit dashboard** for exploring metrics and filtering data dynamically  
+## Solution Overview
+The project collects, cleans, and processes bank app reviews, performs **sentiment and theme analysis**, and presents insights via an **interactive Streamlit dashboard**.  
+Key features:
+- Filter reviews by bank and rating
+- View summary metrics: total reviews, average rating, median rating
+- Visualize rating distributions and review word clouds
+- Explore sentiment analysis and key themes
 
 ---
 
-##   Setup Instructions
+## Key Results
+- **Interactive Dashboard:** Allows finance and product teams to explore review trends in real time
+- **Sentiment Insights:** Identified which banks excel in UI, transactions, and support
+- **Automated Testing & CI/CD:** Ensures code reliability and reproducibility for future updates
 
-Follow these steps to **run the project locally or view the dashboard**:
+---
 
-### 1️⃣ Clone the Repository
-```bash
-git clone https://github.com/Bezawit-cloud/google-play-app-reviews-analysis.git
+## Quick Start
+
+###  Clone repository
+
+```git clone https://github.com/Bezawit-cloud/google-play-app-reviews-analysis.git
 cd google-play-app-reviews-analysis
 ```
-### 2️⃣ Install Python Dependencies
 
-Make sure you have Python 3.10+ installed. Then run:
+###  Install dependencies
 ```
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Prepare the Dataset
-
-- Full Dataset: Place ethopian_bank_reviews.csv in the data/ folder for full analysis.
-
-- Sample Dataset: sample_reviews.csv is included in the repo for testing if full dataset is unavailable.
-
-✅ The dashboard will automatically use the sample CSV if the full dataset is missing.
-
-4️⃣ Run the Streamlit Dashboard
+###  Run the Streamlit dashboard
+```
 streamlit run dashboard/app.py
+```
 
+# Project Structure
 
-Open the displayed URL in your browser (usually `http://localhost:8501`)
+```
+project-root/
+├── src/              # Modular Python code: preprocessing, sentiment, theme analysis
+├── dashboard/        # Streamlit dashboard
+├── tests/            # Pytest unit tests
+├── notebooks/        # Analysis & visualization notebooks
+├── data/             # Full dataset CSV (ignored for GitHub)
+├── sample_reviews.csv# Sample dataset for Streamlit demo
+├── screenshots/      # Dashboard screenshots
+├── .github/workflows/# CI/CD GitHub Actions
+└── README.md         # Project overview & instructions
+```
 
-Use the sidebar to filter by bank and rating
+## Demo
 
-### 5️⃣ Optional: Run Tests
+The dashboard allows users to explore metrics, sentiment, and themes interactively.
 
-Check code reliability with pytest:
+### link[http://localhost:8501/]
 
-# pytest
+##  Technical Details
 
-- All core tests for preprocessing, sentiment, and theme analysis should pass
+- **Data Source**: Google Play Store reviews for BOA, CBE, and Dashen apps
 
-- CI/CD workflow on GitHub runs these tests automatically on every push
+- **Preprocessing**: Cleaning, standardizing text, extracting nouns
 
-## 6️⃣ View Results & Screenshots
+- **Sentiment Analysis**: Positive, Negative, Neutral labels
 
-- Dashboard metrics: total reviews, average rating, median rating
+- **Theme Extraction**: UI, Transactions, Customer Support
 
-- Charts: rating distribution, word cloud
+- **Visualization**: Summary metrics, rating distribution, word clouds
 
-- Screenshots are included in screenshots/ for reference
+- **Testing & CI/CD**: Automated pytest tests, GitHub Actions for workflow
 
+- **Dashboard**: Streamlit app with filters and interactive plots
 
-![Dashboard Screenshot](screenshots/streamlit_image_1.png)
+## Future Improvements
 
+- Add topic modeling to discover emerging themes automatically
 
+- Include time-based trends to track ratings and sentiment over months
 
-### Author
+- Enhance dashboard with predictive analytics (e.g., forecasting app ratings)
+
+- Add more interactivity and export options for finance stakeholders
+
+## Author
 
 Bezawit Assefa
+
+Linkedin[https://www.linkedin.com/in/bezawit-assefa-4964592aa/]
 
 
 
