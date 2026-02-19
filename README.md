@@ -118,7 +118,7 @@ Check code reliability with pytest:
 - Screenshots are included in screenshots/ for reference
 
 
-![Dashboard Screenshot](screenshots/streamlit image 1.png)
+![Dashboard Screenshot](screenshots/streamlit_image_1.png)
 
 
 
